@@ -1,28 +1,9 @@
 {
-  "name": "huxpro.github.io",
+  "name": "duhanjun.github.io",
   "version": "1.0.0",
-  "description": "Hux Blog",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Huxpro/huxpro.github.io"
-  },
-  "devDependencies": {
-    "grunt": "^1.6.1",
-    "grunt-contrib-cssmin": "^4.0.0",
-    "grunt-contrib-jshint": "^2.1.0",
-    "grunt-contrib-uglify": "^5.2.2",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-jekyll": "^0.4.7",
-    "grunt-sass": "^3.1.0",
-    "load-grunt-tasks": "^5.2.0",
-    "sass": "^1.62.0"
-  },
-  "dependencies": {
-    "jekyll": "^4.3.1"
-  },
+  "description": "duhanjun Blog",
   "scripts": {
-    "build": "grunt build",
-    "serve": "grunt serve",
-    "jekyll": "jekyll build"
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve"
   }
 }
