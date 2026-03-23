@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3.1"
+gem "jekyll", "~> 4.4.0"
 gem "minima", "~> 2.5"
-gem "jekyll-feed", "~> 0.12"
+gem "jekyll-feed", "~> 0.17"
 gem "csv"
 gem "base64"
 
