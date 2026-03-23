@@ -23,3 +23,8 @@ Gemfile.lock
 *.swp
 *.swo
 *~
+
+# Local Netlify folder
+.netlify
+
+.vercel
