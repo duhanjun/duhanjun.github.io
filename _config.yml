@@ -1,6 +1,6 @@
 # Site settings
-title: Damon
-SEOTitle: Damon Blog
+title: Hanjun Du
+SEOTitle: Hanjun Du Blog
 #header-img: img/home-bg.jpg
 header-bg-css: #060608
 #header-mask: 0.3
@@ -80,7 +80,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "Damon Blog。 <br> <br> 我们相信一群人聚在一起，可以创造超越个体的价值。"
+sidebar-about-description: "Hanjun Du Blog。 <br> <br> 我们相信一群人聚在一起，可以创造超越个体的价值。"
 #sidebar-avatar: img/home-bg-logo.png # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
