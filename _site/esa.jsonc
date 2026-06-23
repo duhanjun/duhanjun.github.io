@@ -1,13 +1,13 @@
 {
   // ESA Pages 配置文件 - Jekyll 静态站点
   "name": "duhanjun-github-io",
-  // 跳过安装（ESA 构建环境无 Ruby，_site 已预构建）
-  "installCommand": "",
-  // 跳过构建（_site 目录已包含构建产物）
-  "buildCommand": "",
+  // 安装依赖
+  "installCommand": "bundle install",
+  // Jekyll 构建命令
+  "buildCommand": "bundle exec jekyll build",
   // 静态资源配置
   "assets": {
-    // Jekyll 预构建输出目录
+    // Jekyll 构建输出目录
     "directory": "./_site",
     // 静态站点生成模式：未匹配路径返回 404.html
     "notFoundStrategy": "404Page"

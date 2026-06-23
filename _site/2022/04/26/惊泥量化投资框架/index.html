@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="投资未来">
+    <meta name="keywords" content="二哥聊指数, 金融, 投资, 理财, 交易, 股票, 基金, ETF, 博客, 网站, ">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="惊泥量化投资框架 - Damon Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="一、前言
+">
+    
+    <meta property="article:published_time" content=" 2022-04-26T19:08:00Z">
+    
+    
+    <meta property="article:author" content="二哥聊指数">
+    
+    
+    <meta property="article:tag" content="投研资源">
+    
+    <meta property="article:tag" content="量化投资">
+    
+    <meta property="article:tag" content="投资框架">
+    
+    
+    <meta property="og:image" content="https://www.citongshuo.shop">
+    <meta property="og:url" content="https://www.citongshuo.shop/2022/04/26/%E6%83%8A%E6%B3%A5%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6/">
+    <meta property="og:site_name" content="Damon Blog">
+
+    <title>惊泥量化投资框架 - Damon Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.citongshuo.shop/2022/04/26/%E6%83%8A%E6%B3%A5%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    <!-- Google AdSense -->
+    <!-- <script data-ad-client="ca-pub-6487568398225121" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Damon</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">首页</a>
+                        </li>                      
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">简介</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="输入关键词...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/');
+        background: #060608;
+    }
+
+    
+    header.intro-header .header-mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(0,0,0, 0.3);
+    }
+    
+</style>
+
+
+
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E6%8A%95%E7%A0%94%E8%B5%84%E6%BA%90" title="投研资源">投研资源</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E9%87%8F%E5%8C%96%E6%8A%95%E8%B5%84" title="量化投资">量化投资</a>
+                        
+                        <a class="tag" href="/archive/?tag=%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6" title="投资框架">投资框架</a>
+                        
+                    </div>
+                    <h1>惊泥量化投资框架</h1>
+                    
+                    <h2 class="subheading">围绕“模糊的正确”这个投资理念展开讨论</h2>
+                    <span class="meta">Posted by 二哥聊指数 on April 26, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h5 id="一前言">一、前言</h5>
+
+<p>整篇文章将围绕“模糊的正确”这个投资理念展开讨论</p>
+
+<p>“模糊的正确”即：投资就是在不确定性中寻找高胜率</p>
+
+<hr />
+<h5 id="二原则">二、原则</h5>
+
+<p><strong>1.市场趋势一旦形成，尊重市场顺势而为</strong></p>
+
+<p>趋势是集体选择后的结果，个体无法与趋势进行对抗</p>
+
+<p>当一轮趋势启动时，往往就是某个经济大势在起作用</p>
+
+<p>个体无法理解市场的波动，主要是因为个体的局限性</p>
+
+<p><strong>2.参与市场主流板块，远离市场边缘板块</strong></p>
+
+<p>在合适的时机，参与产业逻辑顺具备规模效应的板块</p>
+
+<p>如果不敢参与主流板块，请远离那些弱于大盘的板块</p>
+
+<p><strong>3.两种市场加仓策略，一种从容一种紧张</strong></p>
+
+<p>市场回撤到支撑位加仓，这种左侧交易从容但很耗时</p>
+
+<p>市场突破关键位置加仓，这种右侧交易高效但很紧张</p>
+
+<p><strong>4.交易时机非常重要，抄底逃顶非常危险</strong></p>
+
+<p>一旦错过交易时机，在上升趋势空仓将丧失心理优势</p>
+
+<p>过度追求短线交易，企图预测所有短期波动非常危险</p>
+
+<p><strong>5.投研框架跟踪市场，衡量趋势变化强弱</strong></p>
+
+<p>制定投研分析框架来跟踪市场，衡量趋势何时会变化</p>
+
+<p>这是普通投资者和专业投资者在最终决胜时刻的差异</p>
+
+<hr />
+<h5 id="三投研">三、投研</h5>
+
+<p>一个有效的投研分析框架，可以提升选股择时的胜率</p>
+
+<p>投研分析框架可以帮助跟踪市场动态并发掘交易机会</p>
+
+<p>下面分享一个量化因子结合交易软件的投研分析框架</p>
+
+<p><strong>1.首先是惊泥趋势得分因子</strong></p>
+
+<p><img src="/img/2022-04-26-investment-framework-1.jpg" alt="Image" /></p>
+
+<p>选取沪深A股市值前1800家公司的历史数据</p>
+
+<p>通过量化模型测算各个板块的趋势强弱得分</p>
+
+<p>趋势得分数值越高则指数内个股的趋势越强</p>
+
+<p>根据板块趋势得分的数字变化跟踪行业趋势</p>
+
+<p><strong>2.其次是惊泥北向资金因子</strong></p>
+
+<p><img src="/img/2022-04-26-惊泥量化投资框架-2.jpg" alt="Image" /></p>
+
+<p>选取沪深A股市值前1800家公司的历史数据</p>
+
+<p>通过量化模型测算行业指数的北向资金流向</p>
+
+<p>通过数字表示北向资金净买入额的相对大小</p>
+
+<p>根据板块资金净买入额的变化发掘交易机会</p>
+
+<p><strong>3.接着是惊泥趋势强度因子</strong></p>
+
+<p><img src="/img/2022-04-26-惊泥量化投资框架-3.jpg" alt="Image" /></p>
+
+<p>模型强度：0%&lt;20%&lt;40%&lt;60%&lt;80%&lt;100%</p>
+
+<p>模型用法：0%时不参与，20%和40%时试探建仓，60%时完成建仓，100%时择机减仓</p>
+
+<p>特别说明：建议将该模型用于右侧交易，舍弃趋势开头和结尾的收益，获取趋势中段的收益。</p>
+
+<p><strong>4.最后是融合三个因子构建量化投研系统</strong></p>
+
+<p><img src="/img/2022-04-26-investment-framework-4.jpg" alt="Image" /></p>
+
+<p>惊泥量化投研系统基于通达信的交易软件构建</p>
+
+<p>通过将趋势得分、北向资金因子载入交易软件</p>
+
+<p>结合技术指标构建出进行择时的趋势强度因子</p>
+
+<p>系统预置投研所需的三十个申万一级行业指数</p>
+
+<p>旨在搭建一套供个人开箱既用的量化投研系统</p>
+
+<hr />
+<h5 id="四风控">四、风控</h5>
+
+<p>我们为什么要进行风险管理？从而控制账户的回撤？</p>
+
+<p>因为这可以让自己以更开放的心态来聆听市场的声音</p>
+
+<p>满仓或空仓会过度焦虑，平时可以保持六成中性仓位</p>
+
+<p>若你判断市场将要上涨，顺势将仓位从六成增至八成</p>
+
+<p>若你判断市场将要下跌，提前将仓位从六成减至四成</p>
+
+<p>市场最终确实开始下跌，顺势将仓位从四成减至两成</p>
+
+<p>有效的仓位管理会让你的交易节奏始终处于舒适状态</p>
+
+<hr />
+<h5 id="五尾巴">五、尾巴</h5>
+
+<p>由于篇幅的限制，投研以及风控的细节未能完全展开</p>
+
+<p>欢迎使用刺桐说公众号的量化投研工具继续深入了解</p>
+
+<p>针对希望提升投资胜率的个人、机构、投资顾问等人群</p>
+
+<p>欢迎加入刺桐说社群，跟我们一起学习专业投资知识</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">目录</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <hr>
+    <h5><a href="/archive/">特色标签</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>友情链接</h5>
+<ul class="list-inline">
+  
+  <li><a href="https://www.wind.com.cn/">Wind</a></li>
+  
+  <li><a href="https://choice.eastmoney.com/">Choice</a></li>
+  
+  <li><a href="https://www.tdx.com.cn/">通达信</a></li>
+  
+  <li><a href="http://121.41.137.161:9091/hub/help/api#API文档">PTrade</a></li>
+  
+  <li><a href="http://docs.thinktrader.net/vip/QMT/#QMT">QMT</a></li>
+  
+  <li><a href="https://www.myquant.cn/docs/guide/35">掘金量化</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    SVG: {
+      scale: 90
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                 
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    <a style="color:#666" href="https://beian.miit.gov.cn/">闽ICP备2022018211号</a>
+                    <br>
+                    <a style="color:#666" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35050402880024">闽公网安备35050402880024号</a>
+                    <br>
+
+                    Powered by <a href="https://github.com/duhanjun/duhanjun.github.io">duhanjun.github.io</a>
+                    <br>
+                    Copyright &copy; 2015-2026 Damon. All Rights Reserved.
+
+                    <!-- <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=citongshuo&repo=citongshuo.github.io&type=star&count=true">
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>    
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
